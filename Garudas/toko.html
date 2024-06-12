@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toko Garudas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        @keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        body {
+            background-color: #ede0d2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            animation: fadeIn 2s;
+        }
+        h1, h2 {
+            color: #442f19;
+        }
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+        }
+        .description {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Toko Garudas</h1>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h2>Avatar Bururu Baru</h2>
+                <ul id="avatars" class="list-group"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const avatars = [
+            { title: 'Bururu Nelayan', description: 'Tanam moral menelusuri digital yang baik dengan Bururu', img: 'Bururu_Nelayan/BururuN_Default.svg' },
+            { title: 'Bururu Tophat', description: 'Digital bekerja seperti gaib kan..?', img: 'Bururu_Nelayan/Bururu_tophat.svg' },
+            { title: 'Bururu Cowboy', description: 'Yeehaw kiw kiw ngejar ilmu ngga sieh!!', img: 'Bururu_Nelayan/Bururu_Cowboy.svg' }
+        ];
+
+        const avatarsList = document.getElementById('avatars');
+        avatars.forEach((item, index) => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.style.animationDelay = `${index * 0.2}s`; // Add delay for each item
+            li.innerHTML = `<img src="${item.img}" alt="${item.title}" width="50" height="50"><strong>${item.title}</strong><p class="description">${item.description}</p>`;
+            li.addEventListener('click', () => {
+                const description = li.querySelector('.description');
+                description.style.display = description.style.display === 'none' ? 'block' : 'none';
+            });
+            avatarsList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
